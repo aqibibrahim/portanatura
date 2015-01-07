@@ -45,6 +45,44 @@ function validateForm() {
     }
 }
 </script>
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+function ajaxRequest(){
+     var activexmodes=["Msxml2.XMLHTTP", "Microsoft.XMLHTTP"]; //activeX versions to check for in IE
+     if (window.ActiveXObject){ //Test for support for ActiveXObject in IE first (as XMLHttpRequest in IE7 is broken)
+      for (var i=0; i<activexmodes.length; i++){
+       try{
+        return new ActiveXObject(activexmodes[i]);
+       }
+       catch(e){
+        //suppress error
+       }
+      }
+     }
+     else if (window.XMLHttpRequest) // if Mozilla, Safari etc
+      return new XMLHttpRequest();
+     else
+      return false;
+}
+ 
+function ajaxget(){
+    var mygetrequest=new ajaxRequest();
+    mygetrequest.onreadystatechange=function(){
+     if (mygetrequest.readyState==4){
+      if (mygetrequest.status==200 || window.location.href.indexOf("http")==-1){
+       document.getElementById("result").innerHTML = mygetrequest.responseText;
+      }
+      else{
+       alert("An error has occured making the request");
+      }
+     }
+    }
+    var userId = encodeURIComponent(document.getElementById("name").value);
+    var password = encodeURIComponent(document.getElementById("pwd").value);
+    mygetrequest.open("GET", "http://localhost:8080/AjaxTest/Login?name="+name+"&pwd="+pwd, true);
+    mygetrequest.send(null);
+}
+ 
+</SCRIPT>
 </head>
 <body>
     
@@ -58,7 +96,7 @@ function validateForm() {
 <br>
 <br>
 
-    <form action="#" method="post" name="login-form" onsubmit="return validateForm()">
+    <form action="" method="get" name="login-form" onsubmit="return validateForm()">
 
 <div data-role="fieldcontain">
 <label for="name">User Name:</label>
@@ -71,7 +109,7 @@ function validateForm() {
 
 <div class="ui-body ui-body-d">
 
-<div class="ui-block-d"><button type="submit" data-theme="d" data-icon="arrow-r" data-iconpos="right">Login User</button></div>
+<div class="ui-block-d"><button type="submit" data-theme="d" data-icon="arrow-r" data-iconpos="right" onClick="ajaxget()">Login User</button></div>
 
 
 
