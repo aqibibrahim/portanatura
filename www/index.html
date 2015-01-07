@@ -30,6 +30,21 @@ http.onreadystatechange = function() {//Call a function when the state changes.
 }
 http.send(params);
 </script>-->
+<script>
+function validateForm() {
+    var x = document.forms["login-form"]["name"].value;
+    var y=document.forms["login-form"]["pwd"].value;
+    if (x==null || x=="" ) {
+        alert("User name must be filled out");
+        return false;
+    }
+    if(y==null || y=="")
+    {
+        alert("Password must be filled out");
+        return false;
+    }
+}
+</script>
 </head>
 <body>
     
@@ -43,7 +58,7 @@ http.send(params);
 <br>
 <br>
 
-    <form action="#" method="get">
+    <form action="#" method="post" name="login-form" onsubmit="return validateForm()">
 
 <div data-role="fieldcontain">
 <label for="name">User Name:</label>
