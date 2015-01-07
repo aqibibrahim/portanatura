@@ -45,44 +45,38 @@ function validateForm() {
     }
 }
 </script>
-<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
-function ajaxRequest(){
-     var activexmodes=["Msxml2.XMLHTTP", "Microsoft.XMLHTTP"]; //activeX versions to check for in IE
-     if (window.ActiveXObject){ //Test for support for ActiveXObject in IE first (as XMLHttpRequest in IE7 is broken)
-      for (var i=0; i<activexmodes.length; i++){
-       try{
-        return new ActiveXObject(activexmodes[i]);
-       }
-       catch(e){
-        //suppress error
-       }
-      }
-     }
-     else if (window.XMLHttpRequest) // if Mozilla, Safari etc
-      return new XMLHttpRequest();
-     else
-      return false;
-}
- 
-function ajaxget(){
-    var mygetrequest=new ajaxRequest();
-    mygetrequest.onreadystatechange=function(){
-     if (mygetrequest.readyState==4){
-      if (mygetrequest.status==200 || window.location.href.indexOf("http")==-1){
-       document.getElementById("result").innerHTML = mygetrequest.responseText;
-      }
-      else{
-       alert("An error has occured making the request");
-      }
-     }
-    }
-    var userId = encodeURIComponent(document.getElementById("name").value);
-    var password = encodeURIComponent(document.getElementById("pwd").value);
-    mygetrequest.open("GET", "http://localhost:8080/AjaxTest/Login?name="+name+"&pwd="+pwd, true);
-    mygetrequest.send(null);
-}
- 
-</SCRIPT>
+<script type="text/javascript">
+        
+    jQuery(document).ready(function(){
+        
+        jQuery(document).on('click','#loginbutton',function(){
+            
+           //event.preventDefault(); 
+           var userId = encodeURIComponent(document.getElementById("name").value);
+            var password = encodeURIComponent(document.getElementById("pwd").value);
+            jQuery.ajax({
+                type:'GET',
+                url:"http://portanaturasi.com/wp-admin/admin-ajax.php?action=authenticate&somethingimportant=whatissoimportant&username="+userId+"&password="+password,            
+                data:{},
+                
+            }).done(function(response){
+                try{
+                    var json = jQuery.parseJSON(response);
+                }catch(ex){
+                    alert(ex);
+                }
+                if(json.error==""){
+                    alert("Login Successfull");
+                }else
+                    alert(json.error);
+            });
+        });
+        
+    });
+   
+    
+
+</script>
 </head>
 <body>
     
@@ -109,14 +103,7 @@ function ajaxget(){
 
 <div class="ui-body ui-body-d">
 
-<div class="ui-block-d"><button type="submit" data-theme="d" data-icon="arrow-r" data-iconpos="right" onClick="ajaxget()">Login User</button></div>
-
-
-
-
-
-
-
+<div class="ui-block-d"><button id="loginbutton" type="button" data-theme="d" data-icon="arrow-r" data-iconpos="right" >Login User</button></div>
 
 </div>
 
