@@ -83,16 +83,12 @@ function validateForm() {
 </script>
 <script type="text/javascript">
             
-            document.addEventListener("deviceready", function(){
-                alert("123");
-           },true);
-            
-            document.addEventListener("deviceready",onDeviceReady,false);
+                        
+            document.addEventListener("deviceready",onDeviceReady,true);
             var db;
             function onDeviceReady(){
                 db=window.openDatabase("portanatura","1.0","Product",2*1024*1024);
-                db.transaction(createDB,errorCB,successCB);                
-                
+                db.transaction(createDB,errorCB,successCB);                                
             }
             
             function createDB(tx){
