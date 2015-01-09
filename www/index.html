@@ -79,6 +79,63 @@ function validateForm() {
     
 
 </script>
+<script type="text/javascript">
+            
+            document.addEventListener("device ready",onDeviceReady,false);
+            var db;
+            function onDeviceReady(){
+                db=window.openDatabase("Database","1.0","Cordova Demo",2*1024*1024)
+                db.transaction(createDB,errorCB,successCB);
+                
+                
+            }
+            
+            function createDB(tx){
+                tx.executeSql('DROP TABLE IF EXISTS DEMO');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO(title,image,description)');
+                console.log("Create adatabase");
+            }
+            function errorCB(err){
+                alert("Error processing sql"+err.code);
+            }
+            function successCB(){
+                alert("YEAH!!!!");
+            }
+//            function insertDB(tx){
+//                var _title,_image,_description,sql;
+//                _title= $("[name='title']");
+//                _image=$ ("[name='image']");
+//                _description=$("[name='description']");
+//                sql='INSERT INTO DEMO(title,image,description)VALUES(?,?,?)';
+//                tx.executeSql(sql,[_title,_image,_description],SucessQueryDB,errorCB);
+//                
+//            }
+//            function SucessQueryDB(tx){
+//                
+//                alert("query");
+//                tx.executeSql('SELECT title FROM DEMO',[],renderList,errorCB());
+//            }
+//            function renderList(tx,result){
+//                var htmlstring='';
+//                var len=result.row.lenth;
+//                for(var i=0; i<len; i++){
+//                    htmlstring +='<li>'+result.row.item(i).title+ '<br>'+result.row.item(i).description+'</li>';
+//                    
+//                }
+//                $('#resultlist').html(htmlstring);
+//                $('#resultlist').listview('refresh');
+//                
+//            }
+//            function submitForm(){
+//                db.transaction(insertDB,errorCB);
+//                $.mobile.changePage("#page2",{reverse:false,transition:"slide"});
+//                
+//                return false;
+//            }
+            
+            
+        </script>
+        
 </head>
 <body>
     

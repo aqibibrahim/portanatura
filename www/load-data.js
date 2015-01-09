@@ -21,7 +21,7 @@ jQuery(document).ready(function(){
 
                 }).done(function(json){
                     jQuery(json).each(function(index,customer){
-                        var tr_html = '<tr onclick="myFunction(this)">';
+                        var tr_html = '<tr id="first" onclick="myFunction(this)">';
                                     
                         if(index==0){
                             jQuery(customer).each(function(index,column){
@@ -36,9 +36,35 @@ jQuery(document).ready(function(){
                         jQuery('#data').append(tr_html+'</tr >');
                        
                     })
+                    
+
                 });              
             });    
         }
         function myFunction(x) {
-    alert("Row index is: " + x.rowIndex);
-}
+//            $('#data tr').each(function() {
+//    var customerId = $(this).find('td').html(); 
+//    alert(customerId);
+// });
+
+            $("#data tr").click(function(){
+                
+        var $tds = $(this).find('td'),
+            productId = $tds.eq(0).text(),
+            product = $tds.eq(1).text(),
+            category_id = $tds.eq(2).text();
+            category_name=$tds.eq(3).text();
+            primary_category=$tds.eq(4).text();
+            alert('Row :\nId: ' + productId
+              + '\nProduct: ' + product
+              + '\nCategory Id: ' + category_id
+              + '\nCategory Name: ' + category_name
+              + '\nPrimary Category: ' + primary_category);
+      
+		});
+        // do 
+    
+
+        }
+        
+        
