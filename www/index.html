@@ -81,18 +81,17 @@ function validateForm() {
 </script>
 <script type="text/javascript">
             
-            document.addEventListener("device ready",onDeviceReady,false);
+            document.addEventListener("deviceready",onDeviceReady,false);
             var db;
             function onDeviceReady(){
-                db=window.openDatabase("Database","1.0","Cordova Demo",2*1024*1024)
-                db.transaction(createDB,errorCB,successCB);
-                
+                db=window.openDatabase("portanatura","1.0","Product",2*1024*1024);
+                db.transaction(createDB,errorCB,successCB);                
                 
             }
             
             function createDB(tx){
-                tx.executeSql('DROP TABLE IF EXISTS DEMO');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO(title,image,description)');
+                tx.executeSql('DROP TABLE IF EXISTS product');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS product(title,image,description)');
                 console.log("Create adatabase");
             }
             function errorCB(err){

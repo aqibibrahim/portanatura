@@ -21,7 +21,7 @@ jQuery(document).ready(function(){
 
                 }).done(function(json){
                     jQuery(json).each(function(index,customer){
-                        var tr_html = '<tr id="first" onclick="myFunction(this)">';
+                        var tr_html = '<tr onclick="myFunction(this)">';
                                     
                         if(index==0){
                             jQuery(customer).each(function(index,column){
