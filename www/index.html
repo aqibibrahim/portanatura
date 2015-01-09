@@ -67,7 +67,8 @@ function validateForm() {
                 }
                 if(json.error==""){
                     alert("Login Successfull");
-                    window.open("http://www.w3schools.com");
+                   // window.open("http://www.w3schools.com");
+                   window.location.href = 'categories.html';
                 }else
                     alert(json.error);
             });
