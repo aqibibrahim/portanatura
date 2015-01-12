@@ -5,23 +5,26 @@
  */
 
 
-        function getSqlResultSet() {
-            var db;
-    if (!db) {
-        db = window.openDatabase("portanatura", "1.0", "Product", 2*1024*1024);
-    }
-    db.transaction(queryDB, errorCB); 
-} 
-
-function queryDB(tx) {
-    tx.executeSql('SELECT * FROM product', [], querySuccess, errorCB);
-}
-function errorCB(err){
+     function getresult(){
+         jQuery(document).ready(function(){
+             
+             var db;
+    db=window.openDatabase("portanatura","1.0","product",2*1024*1024);
+    db.transaction(querydb,errorCB,successCB); 
+    function querydb(tx){
+               // tx.executeSql('DROP TABLE IF EXISTS product');
+        var sql="SELECT COUNT(*)FROM product";      
+        tx.executeSql(sql);
+        alert(sql);
+                
+                //console.log("Create  database");
+            }
+            function errorCB(err){
                 alert("Error processing sql"+err.code);
             }
-            function querySuccess(){
+            function successCB(){
                 alert("YEAH!!!!");
-                
                 //insertDB();
             }
-            
+         });
+     }
