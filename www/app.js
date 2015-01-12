@@ -17,7 +17,7 @@ function insertDB(tx){
                       output.empty();
                       $.each(json, function(i,item){ 
                 alert("7");
-                 tx.executeSql('INSERT INTO product (product_id, product_name, category_id, category_name ,primary_category) VALUES(' + item.id + ', "' + item.Accept-Language + '", "' + item.Cookie + '", "' + item.Host + '", "' + item.Cache-Control+'")');
+                 tx.executeSql('INSERT INTO product (product_id, product_name, category_id, category_name ,primary_category) VALUES(' + item.product_id + ', "' + item.product_name + '", "' + item.category_id + '", "' + item.category_name + '", "' + item.primary_category+'")');
         }); 
        // jQuery('#data').append(tr_html+'</tr >');
        alert("Data Insert");
