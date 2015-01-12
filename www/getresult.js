@@ -15,15 +15,19 @@
                // tx.executeSql('DROP TABLE IF EXISTS product');
         var sql="SELECT COUNT(*)FROM product";      
         tx.executeSql(sql);
-        alert(sql);
+        //alert(sql);
                 
                 //console.log("Create  database");
             }
             function errorCB(err){
                 alert("Error processing sql"+err.code);
             }
-            function successCB(){
-                alert("YEAH!!!!");
+            function successCB(tx,result){
+                var len=result.rows.length;
+                alert(len);
+                
+               // alert("YEAH!!!!");
+                
                 //insertDB();
             }
          });
