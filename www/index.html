@@ -93,17 +93,23 @@ function validateForm() {
             
             function createDB(tx){
                 tx.executeSql('DROP TABLE IF EXISTS product');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS product(title,image,description)');
-                console.log("Create adatabase");
+                tx.executeSql('CREATE TABLE IF NOT EXISTS product(product_id INTEGER PRIMARY KEY AUTOINCREMENT,product_name TEXT,category_id INTEGER,category_name TEXT,primary_category TEXT)');
+                
+                console.log("Create  database");
             }
             function errorCB(err){
                 alert("Error processing sql"+err.code);
             }
             function successCB(){
                 alert("YEAH!!!!");
+                //insertDB();
             }
-//            function insertDB(tx){
-//                var _title,_image,_description,sql;
+            
+            
+    
+                    
+                //)
+//        var _title,_image,_description,sql;
 //                _title= $("[name='title']");
 //                _image=$ ("[name='image']");
 //                _description=$("[name='description']");

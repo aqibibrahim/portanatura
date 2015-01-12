@@ -41,6 +41,33 @@ jQuery(document).ready(function(){
                 });              
             });    
         }
+//         function insertDB(employees, callback) {
+//this.db.transaction(
+//function(tx) {
+//var l = employees.length;
+//var sql =
+//"INSERT OR REPLACE INTO employee (id, firstName, lastName, title, officePhone, deleted, lastModified) " +
+//"VALUES (?, ?, ?, ?, ?, ?, ?)";
+//log('Inserting or Updating in local database:');
+//var e;
+//for (var i = 0; i < l; i++) {
+//e = employees[i];
+//log(e.id + ' ' + e.firstName + ' ' + e.lastName + ' ' + e.title + ' ' + e.officePhone + ' ' + e.deleted + ' ' + e.lastModified);
+//var params = [e.id, e.firstName, e.lastName, e.title, e.officePhone, e.deleted, e.lastModified];
+//tx.executeSql(sql, params);
+//}
+//log('Synchronization complete (' + l + ' items synchronized)');
+//},
+//this.txErrorHandler,
+//function(tx) {
+//callback();
+//}
+//);
+//},
+//txErrorHandler: function(tx) {
+//alert(tx.message);
+//}
+//};
         function myFunction(x) {
 //            $('#data tr').each(function() {
 //    var customerId = $(this).find('td').html(); 
