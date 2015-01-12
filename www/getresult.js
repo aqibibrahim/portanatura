@@ -17,15 +17,18 @@
         tx.executeSql(sql);
         //alert(sql);
                 
-                //console.log("Create  database");
+                
             }
             function errorCB(err){
                 alert("Error processing sql"+err.code);
             }
             function successCB(tx,result){
-                var len=result.rows.length;
-                alert(len);
                 
+                var sql="SELECT COUNT(*)FROM product";      
+                tx.executeSql(sql);
+        var len=result.rows.length;
+                alert(len);
+                console.log("Create  database" + len);
                // alert("YEAH!!!!");
                 
                 //insertDB();
