@@ -18,7 +18,6 @@ jQuery(document).ready(function(){
                     data: data,
                     type:'GET',
                     dataType:'json',
-
                 }).done(function(json){
                     jQuery(json).each(function(index,customer){
                         var tr_html = '<tr onclick="myFunction(this)">';
@@ -68,7 +67,7 @@ jQuery(document).ready(function(){
 //alert(tx.message);
 //}
 //};
-        function myFunction(x) {
+        function myFunction() {
 //            $('#data tr').each(function() {
 //    var customerId = $(this).find('td').html(); 
 //    alert(customerId);

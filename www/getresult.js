@@ -21,6 +21,7 @@ function errorCB(err){
             }
             function querySuccess(){
                 alert("YEAH!!!!");
+                
                 //insertDB();
             }
             

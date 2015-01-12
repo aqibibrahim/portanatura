@@ -93,7 +93,7 @@ function validateForm() {
             
             function createDB(tx){
                 tx.executeSql('DROP TABLE IF EXISTS product');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS product(product_id INTEGER PRIMARY KEY AUTOINCREMENT,product_name TEXT,category_id INTEGER,category_name TEXT,primary_category TEXT)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS product(product_id INTEGER PRIMARY KEY AUTOINCREMENT,product_name TEXT,category_id INTEGER,category_name TEXT,   TEXT)');
                 
                 console.log("Create  database");
             }
