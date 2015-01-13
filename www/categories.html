@@ -27,15 +27,15 @@ function checkdata(){
 //                db=window.openDatabase("portanatura","1.0","Product",2*1024*1024);
 //                db.transaction(createDB,errorCB,successCB);                                
 //            }
-jQuery(document).ready(function(){
+//jQuery(document).ready(function(){
     var db;
     db=window.openDatabase("portanatura","1.0","product",2*1024*1024);
     db.transaction(createDB,errorCB,successCB); 
     function createDB(tx){
-                tx.executeSql('DROP TABLE IF EXISTS product');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS product(product_id INTEGER PRIMARY KEY AUTOINCREMENT,product_name TEXT,category_id INTEGER,category_name TEXT,  primary_category TEXT)');
+                tx.executeSql('DROP TABLE IF EXISTS product_aqi');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS product_aqi(product_id INTEGER PRIMARY KEY AUTOINCREMENT,product_name TEXT,category_id INTEGER,category_name TEXT,  primary_category TEXT)');
                 
-                console.log("Create  database");
+                alert("Create database");
             }
             function errorCB(err){
                 alert("Error processing sql"+err.code);
@@ -57,7 +57,7 @@ var data = {
                 type: 'GET',
                 dataType: 'json',
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
 
                     var number_of_post = data.length;
                         alert(number_of_post);
@@ -72,25 +72,25 @@ var data = {
                                             var pccount = data[i][2];
                                             var pcontent = data[i][3];
                                            // var pcategories = data[i][4].primary_category;
-                                            transaction.executeSql('INSERT INTO product(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)',[ptitle,pdate,pccount,pcontent]);
-                                                jQuery(i).each(function(index,customer){
-                                                    var tr_html = '<tr onclick="myFunction(this)">';
-
-                                                    if(index==0){
-                                                        jQuery(customer).each(function(index,column){
-                                                            tr_html += '<th>' + column + '</th>';
-                                                        });                            
-                                                    }else{
-                                                        jQuery(customer).each(function(index,column){
-                                                            tr_html += '<td>' + column + '</td>';
-                                                            });
-                                                    }
-
-                                                    jQuery('#data').append(tr_html+'</tr >');
-
-                                            });
+                                            db.executeSql('INSERT INTO product_aqi(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)',[ptitle,pdate,pccount,pcontent]);
+//                                                jQuery(i).each(function(index,customer){
+//                                                    var tr_html = '<tr onclick="myFunction(this)">';
+//
+//                                                    if(index==0){
+//                                                        jQuery(customer).each(function(index,column){
+//                                                            tr_html += '<th>' + column + '</th>';
+//                                                        });                            
+//                                                    }else{
+//                                                        jQuery(customer).each(function(index,column){
+//                                                            tr_html += '<td>' + column + '</td>';
+//                                                            });
+//                                                    }
+//
+//                                                    jQuery('#data').append(tr_html+'</tr >');
+//
+//                                            });
                                         } 
-                                        transaction.executeSql(' select count(*) as total from product',[],function(tx, res) {
+                                        db.executeSql(' select count(*) as total from product_aqi ',[],function(tx, res) {
                                             alert("res.rows.length: " + res.rows.length + " -- should be 1");
                                             alert("res.rows.item(0).total " + res.rows.item(0).total + " -- should be 872");
                                             }
@@ -102,7 +102,7 @@ var data = {
 
                 }
             });
-        });
+        //});
     }
 
 </script>
