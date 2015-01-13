@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="themes/Bootstrap.css">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile.structure-1.4.0.min.css" />
+<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+<script type="text/javascript" src="phonegap-1.4.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript">
+    
+    jQuery(document).ready(function(){
+        var db;
+    db=window.openDatabase("portanatura","1.0","product",2*1024*1024);
+var sql = ign.sql();
+var driver = sql.driver("sqlite","peserta.sqlite");
+var qry = sql.query("select * from product");
+
+if(driver){
+    //$(".json").html(JSON.stringify(qry));
+    var query = qry;
+    var html = "";
+
+    $("p").html("Status Database Connection : "+query.status);
+    if(query.status){
+
+         $.each(query.content,function(data){
+        html += "<tr>";
+        html += "<td>"+this.prduct_id+"</td>";
+        html += "<td>"+this.product_nama+"</td>";
+        html += "<td>"+this.category_id+"</td>";
+        html += "<td>"+this.category_name+"</td>";
+        html += "<td>"+this.primary_category+"</td>";
+        html += "</tr>";
+    });
+    }
+
+    $(".data").html(html);
+    }
+});
+</script>
+    </head>
+    <body>
+        <p></p>
+<!--
+<h2>JSON Data</h2>
+<div class="json"></div><hr> -->
+<table>
+<tr>
+<td>Product_id</td>
+<td>Product_name</td>
+<td>Category_id</td>
+<td>Category_name</td>
+<td>primary_category</td>
+</tr>
+<tr class="data">
+</tr>
+</table>
+        
+    </body>
+</html>

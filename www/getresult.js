@@ -13,9 +13,10 @@
     db.transaction(querydb,errorCB,successCB); 
     function querydb(tx){
                // tx.executeSql('DROP TABLE IF EXISTS product');
-        var sql="SELECT COUNT(*)FROM product";      
-        tx.executeSql(sql);
-        //alert(sql);
+        var sql="SELECT * FROM product";      
+        var cursor = tx.executeSql(sql);
+        
+//        //alert(sql);
                 
                 
             }
@@ -24,9 +25,9 @@
             }
             function successCB(tx,result){
                 
-                var sql="SELECT COUNT(*)FROM product";      
-                tx.executeSql(sql);
-        var len=result.rows.length;
+                //var sql="SELECT COUNT(*) FROM product";      
+                //tx.executeSql(sql);
+                 var len=result.rows.length;
                 alert(len);
                 console.log("Create  database" + len);
                // alert("YEAH!!!!");

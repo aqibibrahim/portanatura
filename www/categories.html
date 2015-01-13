@@ -66,13 +66,13 @@ var data = {
                                         //alert(ptitle +","+ pdate +","+ pccount+","+ pcategories +","+ pimage);
                                         db.transaction(function(transaction) {
                                             for(var i=0; i < number_of_post; i++){
-
-                                        var ptitle = data[i].title;
-                                        var pdate = data[i].date;
-                                        var pccount = data[i].comment_count;
-                                        var pcontent = data[i].content;
-                                        var pcategories = data[i].categories;
-                                            transaction.executeSql('INSERT INTO product(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,?)',[ptitle,pdate,pccount,pcontent,pcategories]);
+                                            
+                                        var ptitle = data[i][0];
+                                        var pdate = data[i][1];
+                                        var pccount = data[i][2];
+                                        var pcontent = data[i][3];
+                                       // var pcategories = data[i][4].primary_category;
+                                            transaction.executeSql('INSERT INTO product(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)',[ptitle,pdate,pccount,pcontent]);
                                        
                                             } 
                                              alert("data inserted")
@@ -84,6 +84,80 @@ var data = {
     }
 
 </script>
+<script type="text/javascript">
+    function getresult(){
+         jQuery(document).ready(function(){
+             
+             var db;
+            db = openDatabase("portanatura", "1.0", "product", 200000);
+            db.transaction(function(tx) {
+   tx.executeSql("SELECT COUNT(*) FROM product", [],
+      function(tx, result) {
+         //console.log(result.rows);
+         console.log(result.rows.item(0)["count(*)"]);
+
+         // do the html stuff to push this value to div
+      },
+      function(tx, error){
+         // error occured
+      }
+   );
+});
+//    db.transaction(createDB,errorCB,successCB); 
+//    function createDB(tx){
+//                //tx.executeSql('DROP TABLE IF EXISTS product');
+//                tx.executeSql('CREATE TABLE IF NOT EXISTS product(product_id INTEGER PRIMARY KEY AUTOINCREMENT,product_name TEXT,category_id INTEGER,category_name TEXT,   TEXT)');
+//                
+//                console.log("Create  database");
+//            }
+//            function errorCB(err){
+//                alert("Error processing sql"+err.code);
+//            }
+//            function successCB(){
+//                alert("YEAH!!!!");
+//                //insertDB();
+//                db.transaction(getallTableData, errorCB);
+//            }
+//            
+            //var count = 0;
+//var caseTableResult = [];
+//                function getallTableData(tx) {
+//    tx.executeSql('SELECT * FROM product', [], querySuccess, errorCB);
+//}
+// function querySuccess(tx, result) {
+//
+//    var len = result.rows.length;
+//    alert(len);
+//    console.log(len);
+
+//    if (count === 0) {
+//        caseTableResult = result;
+//        $('#data').empty();
+//    } else {
+//        alert("kuch hai")
+////        
+////        var i = count - 1;
+////        $('#data').append(
+////                '<li class="caseRowClick" id="' + caseTableResult.rows.item(i).id + '" data-rel="popup" data-position-to="window">' + '<a href="#">' + '<img src="img/Blue-Folder.png">' + '<h2>' + caseTableResult.rows.item(i).CaseName + t+'</h2>' + '<p>' + caseTableResult.rows.item(i).TextArea + '</p>' + '<p>' + caseTableResult.rows.item(i).CaseDate + '</p>' + '<span class="ui-li-count">' + i + '</span></a>' + 
+////                 '<span class="ctrl togg"><fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" ><button class="edit button_design">Edit</button><button class="del button_design">Delete</button></fieldset><span>'+'</li>'
+//        //);
+//    }
+
+//    if (count <= caseTableResult.rows.length) {
+//        // Call the next query
+//        count += 1;
+//        tx.executeSql('SELECT count(*) FROM ' + caseTableResult.rows.item(i).CaseName, [], querySuccess, errorCB);
+//    } else {
+//        // We're done
+//        $('#data').listview('refresh');
+//    }
+
+//}
+//            
+//         });
+     });
+ }
+</script>
 
     </head>
     <body>
@@ -93,6 +167,7 @@ var data = {
 <div class="ui-block-d"><button id="categories" type="button" data-theme="d" data-icon="arrow-r" data-iconpos="right" onclick="insertDB();">Save Data</button></div>
 <div class="ui-block-d"><button id="categories" type="button" data-theme="d" data-icon="arrow-r" data-iconpos="right" onclick="getresult();">Get Result</button></div>
 <div class="ui-block-d"><button id="categories" type="button" data-theme="d" data-icon="arrow-r" data-iconpos="right" onclick="checkdata();">check Result</button></div>
+<a href="display.tml">Display Records</a>
 <br>
 <br>
 <br>
@@ -100,7 +175,7 @@ var data = {
 <div id="dialog" title="Cookie Monster Says"></div>
 <script type="text/javascript" src="load-data.js"></script>
 <script type="text/javascript" src="app.js"></script>
-<script type="text/javascript" src="getresult.js"></script>
+
 
 </div>
 
