@@ -73,9 +73,7 @@ var data = {
                                         var pcontent = data[i][3];
                                        // var pcategories = data[i][4].primary_category;
                                             transaction.executeSql('INSERT INTO product(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)',[ptitle,pdate,pccount,pcontent,"null"]);
-                                       
-                                            } 
-                                            jQuery(data).each(function(index,customer){
+                                       jQuery(i).each(function(index,customer){
                         var tr_html = '<tr onclick="myFunction(this)">';
                                     
                         if(index==0){
@@ -91,6 +89,8 @@ var data = {
                         jQuery('#data').append(tr_html+'</tr >');
                        
                     });
+                                            } 
+                                            
                     
                                              alert("data inserted")
                     });
