@@ -72,7 +72,7 @@ function checkdata(){
                                             var pccount = data[i][2];
                                             var pcontent = data[i][3];
                                            // var pcategories = data[i][4].primary_category;
-                                            transaction.executeSql('INSERT INTO product_aqi(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)',[ptitle,pdate,pccount,pcontent,"null"]);
+                                            transaction.executeSql("INSERT INTO product_aqi(product_id,product_name,category_id,category_name,primary_category) VALUES ('"+ptitle+"','"+pdate+"','"+pccount+"','"+pcontent+"',null)",[]);
 //                                                jQuery(i).each(function(index,customer){
 //                                                    var tr_html = '<tr onclick="myFunction(this)">';
 //
