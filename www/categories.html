@@ -65,32 +65,37 @@ var data = {
                                         //var pimage = "my image";
                                         //alert(ptitle +","+ pdate +","+ pccount+","+ pcategories +","+ pimage);
                                         db.transaction(function(transaction) {
-                                            for(var i=0; i < number_of_post; i++){
+                                        for(var i=0; i < number_of_post; i++){
                                             
-                                        var ptitle = data[i][0];
-                                        var pdate = data[i][1];
-                                        var pccount = data[i][2];
-                                        var pcontent = data[i][3];
-                                       // var pcategories = data[i][4].primary_category;
-                                            transaction.executeSql('INSERT INTO product(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)',[ptitle,pdate,pccount,pcontent,"null"]);
-                                       jQuery(i).each(function(index,customer){
-                        var tr_html = '<tr onclick="myFunction(this)">';
-                                    
-                        if(index==0){
-                            jQuery(customer).each(function(index,column){
-                                tr_html += '<th>' + column + '</th>';
-                            });                            
-                        }else{
-                            jQuery(customer).each(function(index,column){
-                                tr_html += '<td>' + column + '</td>';
-                                });
-                        }
-                        
-                        jQuery('#data').append(tr_html+'</tr >');
-                       
-                    });
-                                            } 
-                                            
+                                            var ptitle = data[i][0];
+                                            var pdate = data[i][1];
+                                            var pccount = data[i][2];
+                                            var pcontent = data[i][3];
+                                           // var pcategories = data[i][4].primary_category;
+                                            transaction.executeSql('INSERT INTO product(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)',[ptitle,pdate,pccount,pcontent]);
+                                                jQuery(i).each(function(index,customer){
+                                                    var tr_html = '<tr onclick="myFunction(this)">';
+
+                                                    if(index==0){
+                                                        jQuery(customer).each(function(index,column){
+                                                            tr_html += '<th>' + column + '</th>';
+                                                        });                            
+                                                    }else{
+                                                        jQuery(customer).each(function(index,column){
+                                                            tr_html += '<td>' + column + '</td>';
+                                                            });
+                                                    }
+
+                                                    jQuery('#data').append(tr_html+'</tr >');
+
+                                            });
+                                        } 
+                                        transaction.executeSql(' select count(*) as total from product',[],function(tx, res) {
+                                            alert("res.rows.length: " + res.rows.length + " -- should be 1");
+                                            alert("res.rows.item(0).total " + res.rows.item(0).total + " -- should be 872");
+                                            }
+                                        );
+                                          
                     
                                              alert("data inserted")
                     });
@@ -100,6 +105,33 @@ var data = {
         });
     }
 
+</script>
+<script type="text/javascript">
+    function myFunction() {
+//            $('#data tr').each(function() {
+//    var customerId = $(this).find('td').html(); 
+//    alert(customerId);
+// });
+
+            $("#data tr").click(function(){
+                
+        var $tds = $(this).find('td'),
+            productId = $tds.eq(0).text(),
+            product = $tds.eq(1).text(),
+            category_id = $tds.eq(2).text();
+            category_name=$tds.eq(3).text();
+            primary_category=$tds.eq(4).text();
+            alert('Row :\nId: ' + productId
+              + '\nProduct: ' + product
+              + '\nCategory Id: ' + category_id
+              + '\nCategory Name: ' + category_name
+              + '\nPrimary Category: ' + primary_category);
+      
+		});
+        // do 
+    
+
+        }
 </script>
 <script type="text/javascript">
     function getresult(){
