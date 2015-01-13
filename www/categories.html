@@ -160,7 +160,7 @@ var data = {
 
 
   function queryDB(tx) {
-     tx.executeSql('SELECT * FROM product', [], querySuccess, errorCB);
+     tx.executeSql('SELECT * FROM product_aqi', [], querySuccess, errorCB);
  }
 function errorCB(err){
                 alert("Error processing sql"+err.code);
