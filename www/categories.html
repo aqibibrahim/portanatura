@@ -65,14 +65,14 @@ function checkdata(){
                                         //var pimage = "my image";
                                         //alert(ptitle +","+ pdate +","+ pccount+","+ pcategories +","+ pimage);
                                         db.transaction(function(transaction) {
-                                        for(var i=0; i < 2; i++){
+                                        for(var i=0; i < number_of_post; i++){
                                             
                                             var ptitle = data[i][0];
                                             var pdate = data[i][1];
                                             var pccount = data[i][2];
                                             var pcontent = data[i][3];
                                            // var pcategories = data[i][4].primary_category;
-                                            transaction.executeSql('INSERT INTO product_aqi(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)',[ptitle,pdate,pccount,pcontent]);
+                                            transaction.executeSql('INSERT INTO product_aqi(product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)',[ptitle,pdate,pccount,pcontent,"null"]);
 //                                                jQuery(i).each(function(index,customer){
 //                                                    var tr_html = '<tr onclick="myFunction(this)">';
 //
@@ -91,22 +91,22 @@ function checkdata(){
 //                                            });
                                         }
                                         alert("data completely inserted");
-                                      transaction.executeSql(function(tx){
-                                            
-                                            db.transaction(function(tx){
-                                                
-                                                tx.executeSql(' select count(*) as total from product_aqi ',[],function(tx, res) {
-                                                    alert("res.rows.length: " + res.rows.length + " -- should be 1");
-                                                    alert("res.rows.item(0).total " + res.rows.item(0).total + " -- should be 872");
-                                                    }
-                                                );
-                                                
-                                            },function(err){
-                                          alert('its all error ' + err.code);  
-                                        },function(){
-                                          alert('its all good ');  
-                                        });
-                                            
+//                                      transaction.executeSql(function(tx){
+//                                            
+//                                            db.transaction(function(tx){
+//                                                
+//                                                tx.executeSql('select count(*) as total from product_aqi',[],function(tx, res) {
+//                                                    alert("res.rows.length: " + res.rows.length + " -- should be 1");
+//                                                    alert("res.rows.item(0).total " + res.rows.item(0).total + " -- should be 872");
+//                                                    }
+//                                                );
+//                                                
+//                                            },function(err){
+//                                          alert('its all error ' + err.code);  
+//                                        },function(){
+//                                          alert('its all good ');  
+//                                        });
+//                                            
         
         
                                             
@@ -117,7 +117,7 @@ function checkdata(){
                                         
                                           
                     
-        });                                    // alert("data inserted")
+        //});                                    // alert("data inserted")
                     });
 
                 }
