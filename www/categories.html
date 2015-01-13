@@ -46,7 +46,7 @@ function checkdata(){
             }
             
    
-var data = {
+                var data = {
                     'action':'getProductCategories',
                     'somethingimportant':'whatissoimportant',
                     'format':'json'            
@@ -91,21 +91,21 @@ var data = {
 //                                            });
                                         }
                                         alert("data completely inserted");
-                                        //transaction.executeSql(function(tx){
+                                      transaction.executeSql(function(tx){
                                             
-//                                            db.transaction(function(tx){
-//                                                
-//                                                tx.executeSql(' select count(*) as total from product_aqi ',[],function(tx, res) {
-//                                                    alert("res.rows.length: " + res.rows.length + " -- should be 1");
-//                                                    alert("res.rows.item(0).total " + res.rows.item(0).total + " -- should be 872");
-//                                                    }
-//                                                );
-//                                                
-//                                            },function(err){
-//                                          alert('its all error ' + err.code);  
-//                                        },function(){
-//                                          alert('its all good ');  
-//                                        });
+                                            db.transaction(function(tx){
+                                                
+                                                tx.executeSql(' select count(*) as total from product_aqi ',[],function(tx, res) {
+                                                    alert("res.rows.length: " + res.rows.length + " -- should be 1");
+                                                    alert("res.rows.item(0).total " + res.rows.item(0).total + " -- should be 872");
+                                                    }
+                                                );
+                                                
+                                            },function(err){
+                                          alert('its all error ' + err.code);  
+                                        },function(){
+                                          alert('its all good ');  
+                                        });
                                             
         
         
@@ -117,12 +117,12 @@ var data = {
                                         
                                           
                     
-                                             alert("data inserted")
+        });                                    // alert("data inserted")
                     });
 
                 }
             });
-        //});
+        
     }
 
 </script>
