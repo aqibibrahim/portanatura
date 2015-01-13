@@ -71,6 +71,7 @@ function checkdata(){
                                             var pdate = data[i][1];
                                             var pccount = data[i][2];
                                             var pcontent = data[i][3];
+                                            alert(ptitle);
                                            // var pcategories = data[i][4].primary_category;
                                             transaction.executeSql("INSERT INTO product_aqi(product_id,product_name,category_id,category_name,primary_category) VALUES ('"+ptitle+"','"+pdate+"','"+pccount+"','"+pcontent+"',null)",[]);
 //                                                jQuery(i).each(function(index,customer){
