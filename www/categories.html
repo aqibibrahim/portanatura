@@ -97,11 +97,11 @@ function checkdata(){
 </script>
 <script type="text/javascript">
     function extractFromDB(){
-     var db = window.openDatabase("portanatura", "1.0", "product", true);
+     var db = window.openDatabase("portanatura", "1.0", "product", false);
     
 
 db.transaction(function(tx) {
-    tx.executeSql("SELECT COUNT(*) AS nor FROM product_aqi", [],
+    tx.executeSql('SELECT COUNT(*) AS nor FROM product_aqi;', [],
         function(tx, result){ // <-- this is where you forgot tx
             console.log(result.rows);
             alert(result.rows);
