@@ -104,22 +104,9 @@ function checkdata(){
             tx.executeSql('SELECT DISTINCT category_id FROM product_aqi', [], querySuccess, errorCB);
         });
         function querySuccess(tx, results) {
-        jQuery(results).each(function(index,customer){
-                        var tr_html = '<tr onclick="myFunction(this)">';
-                                    
-                        if(index==0){
-                            jQuery(customer).each(function(index,column){
-                                tr_html += '<th>' + column + '</th>';
-                            });                            
-                        }else{
-                            jQuery(customer).each(function(index,column){
-                                tr_html += '<td>' + column + '</td>';
-                                });
-                        }
-                        
-                        jQuery('#data').append(tr_html+'</tr >');
-                       
-                    });
+        var len = results.rows.length;
+       // console.log("DEMO table: " + len + " rows found.");
+        alert(len);
                                 
     }
 
