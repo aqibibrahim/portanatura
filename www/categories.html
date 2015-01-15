@@ -21,135 +21,51 @@ and open the template in the editor.
 
 function checkdata(){
     
-//    document.addEventListener("deviceready",onDeviceReady,true);
-//            var db;
-//            function onDeviceReady(){
-//                db=window.openDatabase("portanatura","1.0","Product",2*1024*1024);
-//                db.transaction(createDB,errorCB,successCB);                                
-//            }
-//jQuery(document).ready(function(){
     var db;
     db=window.openDatabase("portanatura","1.0","product",2*1024*1024);
     db.transaction(createDB,errorCB,successCB); 
     function createDB(tx){
-                //tx.executeSql('DROP TABLE IF EXISTS product_aqi');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS product_aqi(product_id INTEGER,product_name TEXT,category_id INTEGER,category_name TEXT,  primary_category TEXT)');
-                
-                alert("Create database");
-            }
-            function errorCB(err){
-                alert("Error processing sql"+err.code);
-            }
-            function successCB(){
-                alert("YEAH!!!!");
-                //db.transaction(queryDB,errorCB);
-                //insertDB();
-            }
-//            function queryDB(tx){
-//        tx.executeSql('SELECT * FROM product_aqi',[],querySuccess,errorCB);
-//    }
-//    function querySuccess(){
-//        alert("something ");
-//    }
-                var data = {
-                    'action':'getProductCategories',
-                    'somethingimportant':'whatissoimportant',
-                    'format':'json'            
-                };
-                jQuery.ajax({
-                url: 'http://portanaturasi.com/wp-admin/admin-ajax.php',
-                data: data,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data){
-                    //console.log(data);
+		//tx.executeSql('DROP TABLE IF EXISTS product_aqi');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS product_aqi(product_id INTEGER,product_name TEXT,category_id INTEGER,category_name TEXT,  primary_category TEXT)');
+		
+		alert("Create database");
+	}
+	function errorCB(err){
+		alert("Error processing sql"+err.code);
+	}
+	function successCB(){
+		alert("YEAH!!!!");	
+	}            
+	var data = {
+		'action':'getProductCategories',
+		'somethingimportant':'whatissoimportant',
+		'format':'json'            
+	}
+	jQuery.ajax({
+		url: 'http://portanaturasi.com/wp-admin/admin-ajax.php',
+		data: data,
+		type: 'GET',
+		dataType: 'json',
+		success: function(data1){                    
 
-                    var number_of_post = data.length;
-                    number_of_post=3;
-                        //alert(number_of_post);
-                    
-                                        //var pimage = "my image";
-                                        //alert(ptitle +","+ pdate +","+ pccount+","+ pcategories +","+ pimage);
-                                      
-        //db.transaction(function(transaction) {
-                                        for(var i=0; i < number_of_post; i++){
-                                            
-                                            ContentValues cv = new ContentValues();
-                                            cv.put("product_id", data[i][0]);
-                                            cv.put("product_name", data[i][1]);
-                                            cv.put("category_id", data[i][2]);
-                                            cv.put("category_name", data[i][3]);
-                                            cv.put("primary_category", null);
-                                            /*var ptitle = data[i][0];
-                                            var pdate = data[i][1];
-                                            var pccount = data[i][2];
-                                            var pcontent = data[i][3];*/
-                                            //alert(ptitle);
-                                           // var pcategories = data[i][4].primary_category;
-                                           
-                                           db.insert("product_aqi",null,cv);
-                                           
-                                            //db.insert("INSERT INTO product_aqi('product_name','category_id','category_name','primary_category') VALUES ('"+ptitle+"','"+pdate+"','"+pccount+"','"+pcontent+"',null)",[],function(tx, results){
-                                           // alert('Returned ID: ' + results.insertId);
-                                           //var lastInsertId = results.insertId;
-                                           //alert(lastInsertId);
-                //}
-            //errorCB);
-            
+			var number_of_post = data1.length;
+			number_of_post=3;                        
+                        for(var i=0; i < number_of_post; i++){
 
+                                ContentValues cv = new ContentValues();
+                                cv.put("product_id", data1[i][0]);
+                                cv.put("product_name", data1[i][1]);
+                                cv.put("category_id", data1[i][2]);
+                                cv.put("category_name", data1[i][3]);
+                                cv.put("primary_category", null);                                            
 
-//                                                jQuery(i).each(function(index,customer){
-//                                                    var tr_html = '<tr onclick="myFunction(this)">';
-//
-//                                                    if(index==0){
-//                                                        jQuery(customer).each(function(index,column){
-//                                                            tr_html += '<th>' + column + '</th>';
-//                                                        });                            
-//                                                    }else{
-//                                                        jQuery(customer).each(function(index,column){
-//                                                            tr_html += '<td>' + column + '</td>';
-//                                                            });
-//                                                    }
-//
-//                                                    jQuery('#data').append(tr_html+'</tr >');
-//
-//                                            });
-                                        }
-                                        alert("data completely inserted");
-//                                      transaction.executeSql(function(tx){
-//                                            
-//                                            db.transaction(function(tx){
-//                                                
-//                                                tx.executeSql('select count(*) as total from product_aqi',[],function(tx, res) {
-//                                                    alert("res.rows.length: " + res.rows.length + " -- should be 1");
-//                                                    alert("res.rows.item(0).total " + res.rows.item(0).total + " -- should be 872");
-//                                                    }
-//                                                );
-//                                                
-//                                            },function(err){
-//                                          alert('its all error ' + err.code);  
-//                                        },function(){
-//                                          alert('its all good ');  
-//                                        });
-//                                            
+                           db.insert("product_aqi",null,cv);
+                        }
+                        alert("data completely inserted");
+		}
+	});
         
-        
-                                            
-                                            
-                                            
-//                                        
-                                        
-                                        
-                                          
-                    
-        //});                                    // alert("data inserted")
-                    });
-                    
-
-                }
-            });
-        
-    }
+}
 
 </script>
 <script type="text/javascript">
