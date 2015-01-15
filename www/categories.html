@@ -109,7 +109,10 @@ function errorCB(err){
             }
  function querySuccess(tx, results) {
      var len = results.rows.length;
-     var  count = results.row.count;     
+     var  count = 0;
+     jQuery.each(result.rows,function(index,row){
+         count = row.count;
+     }     
      alert("len:" + len + " count:" + count);
 //     for (var i=0; i<len; i++){
 //            console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
