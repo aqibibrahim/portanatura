@@ -102,7 +102,7 @@ function checkdata(){
 
 
   function queryDB(tx) {
-     tx.executeSql('SELECT count(*) FROM product_aqi', [], function(transaction, result) {
+     tx.executeSql('SELECT count(*) FROM product_aqi WHERE primary_category = 1 ', [], function(transaction, result) {
     if (result != null && result.rows != null) {
        // var allItems = '';
         for (var i = 0; i < result.rows.length; i++) {
