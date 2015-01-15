@@ -101,14 +101,14 @@ function checkdata(){
     
 
 db.transaction(function(tx) {
-    tx.executeSql("SELECT COUNT(*) AS nor FROM product_aqi", [],
+    tx.executeSql("SELECT count(*) AS nor FROM product_aqi", [],
         function(tx, result){ // <-- this is where you forgot tx
             console.log(result.rows);
             alert(result.rows);
-        },
-        function(tx, error){
-            tx.executeSql("CREATE TABLE subjects (id REAL UNIQUE, name TEXT)");
         }
+//        function(tx, error){
+//            tx.executeSql("CREATE TABLE subjects (id REAL UNIQUE, name TEXT)");
+//        }
     );
 });
     }
