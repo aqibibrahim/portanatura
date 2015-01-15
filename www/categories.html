@@ -101,10 +101,10 @@ function checkdata(){
     
 
 db.transaction(function(tx) {
-    tx.executeSql("SELECT count(*) AS nor FROM product_aqi", [],
+    tx.executeSql('SELECT * FROM product_aqi WHERE product_id= 156', [],
         function(tx, result){ // <-- this is where you forgot tx
-            console.log(result.rows);
-            alert(result.rows);
+            console.log(result);
+            alert(result);
         }
 //        function(tx, error){
 //            tx.executeSql("CREATE TABLE subjects (id REAL UNIQUE, name TEXT)");
