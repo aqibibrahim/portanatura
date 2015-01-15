@@ -51,7 +51,7 @@ function checkdata(){
                     db.transaction(
                             function(tx){                                
                                 var number_of_post = data1.length;                                
-                                for(var i=0; i < number_of_post; i++){
+                                for(var i=1; i < number_of_post; i++){
                                         tx.executeSql("INSERT INTO product_aqi (product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)",[data1[i][0],data1[i][1],data1[i][2],data1[i][3]]);                                        
                                     }
                                 
@@ -102,15 +102,15 @@ function checkdata(){
 
 
   function queryDB(tx) {
-     tx.executeSql('SELECT count(*) FROM product_aqi', [], querySuccess, errorCB);
+     tx.executeSql('SELECT count(*) as count FROM product_aqi', [], querySuccess, errorCB);
  }
 function errorCB(err){
                 alert("Error processing sql"+err.code);
             }
  function querySuccess(tx, results) {
      var len = results.rows.length;
-     console.log("DEMO table: " + len + " rows found.");
-     alert(len);
+     var  count = results.row.count;     
+     alert("len:" + len + " count:" + count);
 //     for (var i=0; i<len; i++){
 //            console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
 //      }
