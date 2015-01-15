@@ -52,7 +52,7 @@ function checkdata(){
                             function(tx){                                
                                 var number_of_post = data1.length;                                
                                 for(var i=1; i < number_of_post; i++){
-                                        tx.executeSql("INSERT INTO product_aqi (product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,0)",[data1[i][0],data1[i][1],data1[i][2],data1[i][3]]);                                        
+                                        tx.executeSql("INSERT INTO product_aqi (product_id,product_name,category_id,category_name,primary_category) VALUES (?,?,?,?,null)",[data1[i][0],data1[i][1],data1[i][2],data1[i][3]],errorCallback());                                        
                                     }
                                 
                             },
@@ -101,10 +101,10 @@ function checkdata(){
     
 
 db.transaction(function(tx) {
-    tx.executeSql('SELECT * FROM product_aqi WHERE product_id= 156', [],
+    tx.executeSql("SELECT COUNT(*) AS nor FROM product_aqi", [],
         function(tx, result){ // <-- this is where you forgot tx
-            console.log(result);
-            alert(result);
+            console.log(result.rows);
+            alert(result.rows);
         }
 //        function(tx, error){
 //            tx.executeSql("CREATE TABLE subjects (id REAL UNIQUE, name TEXT)");
