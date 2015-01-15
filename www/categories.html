@@ -65,11 +65,12 @@ function checkdata(){
                     //console.log(data);
 
                     var number_of_post = data.length;
+                    number_of_post=3;
                         //alert(number_of_post);
                     
                                         //var pimage = "my image";
                                         //alert(ptitle +","+ pdate +","+ pccount+","+ pcategories +","+ pimage);
-        BEGIN;                              
+                                      
         db.transaction(function(transaction) {
                                         for(var i=0; i < number_of_post; i++){
                                             
@@ -86,7 +87,7 @@ function checkdata(){
                                            alert(lastInsertId);
             },
             errorCB);
-            COMMIT;
+            
 
 
 //                                                jQuery(i).each(function(index,customer){
