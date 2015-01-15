@@ -98,28 +98,20 @@ function checkdata(){
 <script type="text/javascript">
     function extractFromDB(){
      var db = window.openDatabase("portanatura", "1.0", "product", true);
-     db.transaction(queryDB, errorCB);
+    
 
-
-  function queryDB(tx) {
-     tx.executeSql('SELECT count * FROM product_aqi WHERE primary_category = 1 ', [], function(transaction, result) {
-    if (result != null && result.rows != null) {
-       // var allItems = '';
-        for (var i = 0; i < result.rows.length; i++) {
-            var row = result.rows.item(i);          
-            //allItems +='<td data-rowid="' + row['column0'] + '"><a href ="#" class="updateRecordButton">' + 'item1: ' + row['column1'] + '<br>' + 'item2: ' + row['column2'] + '<br>' + 'item3: ' + row['column3'] + '<br>' + 'item4: ' + row['column4'] + '</a></li>';
+db.transaction(function(tx) {
+    tx.executeSql("SELECT COUNT(*) AS nor FROM product_aqi", [],
+        function(tx, result){ // <-- this is where you forgot tx
+            console.log(result.rows);
+            alert(result.rows);
+        },
+        function(tx, error){
+            tx.executeSql("CREATE TABLE subjects (id REAL UNIQUE, name TEXT)");
         }
-        //$( "#data" ).append(allItems).listview().listview("refresh");
-        alert(row);
+    );
+});
     }
-},errorHandler);
- }
-function errorCB(err){
-                alert("Error processing sql "+err.message);
-            }
- 
-    }
- 
 </script>
 
     </head>
