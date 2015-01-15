@@ -101,37 +101,32 @@ function checkdata(){
     function extractFromDB() {
         var db = window.openDatabase("portanatura", "1.0", "product", false);
         db.transaction(function(tx){
-            tx.executeSql('SELECT * FROM product_aqi', [], querySuccess, errorCB);
+            tx.executeSql('SELECT DISTINCT category_id FROM product_aqi', [], querySuccess, errorCB);
         });
         function querySuccess(tx, results) {
-        var len = results.rows.length;
-        console.log("DEMO table: " + len + " rows found.");
-//        
-//        
-alert(len);
+        jQuery(results).each(function(index,customer){
+                        var tr_html = '<tr onclick="myFunction(this)">';
+                                    
+                        if(index==0){
+                            jQuery(customer).each(function(index,column){
+                                tr_html += '<th>' + column + '</th>';
+                            });                            
+                        }else{
+                            jQuery(customer).each(function(index,column){
+                                tr_html += '<td>' + column + '</td>';
+                                });
+                        }
+                        
+                        jQuery('#data').append(tr_html+'</tr >');
+                       
+                    });
+                                
     }
 
-    // Transaction error callback
-    //
     function errorCB(err) {
         console.log("Error processing SQL: "+err.code);
     }
     }
-
-    // Query the success callback
-    //
-    
-
-//db.transaction(function(tx) {
-//    tx.executeSql('SELECT COUNT(*) AS nor FROM product_aqi', [],
-//        function(tx, result){ // <-- this is where you forgot tx
-//            console.log(result.rows);
-//            alert(result.length);
-//        }
-////        function(tx, error){
-////            tx.executeSql("CREATE TABLE subjects (id REAL UNIQUE, name TEXT)");
-////        }
-//    );
 
     
 </script>
