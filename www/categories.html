@@ -33,7 +33,7 @@ function checkdata(){
     db.transaction(createDB,errorCB,successCB); 
     function createDB(tx){
                 //tx.executeSql('DROP TABLE IF EXISTS product_aqi');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS product_aqi(product_id INTEGER PRIMARY KEY AUTOINCREMENT,product_name TEXT,category_id INTEGER,category_name TEXT,  primary_category TEXT)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS product_aqi(product_id INTEGER,product_name TEXT,category_id INTEGER,category_name TEXT,  primary_category TEXT)');
                 
                 alert("Create database");
             }
@@ -71,22 +71,30 @@ function checkdata(){
                                         //var pimage = "my image";
                                         //alert(ptitle +","+ pdate +","+ pccount+","+ pcategories +","+ pimage);
                                       
-        db.transaction(function(transaction) {
+        //db.transaction(function(transaction) {
                                         for(var i=0; i < number_of_post; i++){
                                             
-                                            var ptitle = data[i][0];
+                                            ContentValues cv = new ContentValues();
+                                            cv.put("product_id", data[i][0]);
+                                            cv.put("product_name", data[i][1]);
+                                            cv.put("category_id", data[i][2]);
+                                            cv.put("category_name", data[i][3]);
+                                            cv.put("primary_category", null);
+                                            /*var ptitle = data[i][0];
                                             var pdate = data[i][1];
                                             var pccount = data[i][2];
-                                            var pcontent = data[i][3];
+                                            var pcontent = data[i][3];*/
                                             //alert(ptitle);
                                            // var pcategories = data[i][4].primary_category;
                                            
-                                            transaction.executeSql("INSERT INTO product_aqi('product_id','product_name','category_id','category_name','primary_category') VALUES ('"+ptitle+"','"+pdate+"','"+pccount+"','"+pcontent+"',null)",[],function(tx, results){
+                                           db.insert("product_aqi",null,cv);
+                                           
+                                            //db.insert("INSERT INTO product_aqi('product_name','category_id','category_name','primary_category') VALUES ('"+ptitle+"','"+pdate+"','"+pccount+"','"+pcontent+"',null)",[],function(tx, results){
                                            // alert('Returned ID: ' + results.insertId);
-                                           var lastInsertId = results.insertId;
-                                           alert(lastInsertId);
-            },
-            errorCB);
+                                           //var lastInsertId = results.insertId;
+                                           //alert(lastInsertId);
+                //}
+            //errorCB);
             
 
 
