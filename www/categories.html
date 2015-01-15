@@ -32,7 +32,7 @@ function checkdata(){
     db=window.openDatabase("portanatura","1.0","product",2*1024*1024);
     db.transaction(createDB,errorCB,successCB); 
     function createDB(tx){
-                tx.executeSql('DROP TABLE IF EXISTS product_aqi');
+                //tx.executeSql('DROP TABLE IF EXISTS product_aqi');
                 tx.executeSql('CREATE TABLE IF NOT EXISTS product_aqi(product_id INTEGER PRIMARY KEY AUTOINCREMENT,product_name TEXT,category_id INTEGER,category_name TEXT,  primary_category TEXT)');
                 
                 alert("Create database");
