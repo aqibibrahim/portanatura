@@ -102,7 +102,7 @@ function checkdata(){
 
 
   function queryDB(tx) {
-     tx.executeSql("SELECT count(*) as count FROM product_aqi", [], querySuccess, errorCB);
+     tx.executeSql('SELECT count(*) as count FROM product_aqi', [], querySuccess, errorCB);
  }
 function errorCB(err){
                 alert("Error processing sql "+err.message);
