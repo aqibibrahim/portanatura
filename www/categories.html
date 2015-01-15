@@ -102,22 +102,22 @@ function checkdata(){
 
 
   function queryDB(tx) {
-     tx.executeSql('SELECT count(*) as count FROM product_aqi', [], querySuccess, errorCB);
+     tx.executeSql('SELECT count(*) FROM product_aqi', [], function(transaction, result) {
+    if (result != null && result.rows != null) {
+       // var allItems = '';
+        for (var i = 0; i < result.rows.length; i++) {
+            var row = result.rows.item(i);          
+            //allItems +='<td data-rowid="' + row['column0'] + '"><a href ="#" class="updateRecordButton">' + 'item1: ' + row['column1'] + '<br>' + 'item2: ' + row['column2'] + '<br>' + 'item3: ' + row['column3'] + '<br>' + 'item4: ' + row['column4'] + '</a></li>';
+        }
+        //$( "#data" ).append(allItems).listview().listview("refresh");
+        alert(row);
+    }
+},errorHandler);
  }
 function errorCB(err){
                 alert("Error processing sql "+err.message);
             }
- function querySuccess(tx, results) {
-     var len = results.rows.length;
-     var  count = 0;
-     jQuery.each(result.rows,function(index,row){
-         count = row.count;
-     });     
-     alert("len:" + len + " count:" + count);
-//     for (var i=0; i<len; i++){
-//            console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
-//      }
-}
+ 
     }
  
 </script>
