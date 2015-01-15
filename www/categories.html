@@ -42,10 +42,15 @@ function checkdata(){
             }
             function successCB(){
                 alert("YEAH!!!!");
+                //db.transaction(queryDB,errorCB);
                 //insertDB();
             }
-            
-   
+//            function queryDB(tx){
+//        tx.executeSql('SELECT * FROM product_aqi',[],querySuccess,errorCB);
+//    }
+//    function querySuccess(){
+//        alert("something ");
+//    }
                 var data = {
                     'action':'getProductCategories',
                     'somethingimportant':'whatissoimportant',
@@ -60,7 +65,7 @@ function checkdata(){
                     //console.log(data);
 
                     var number_of_post = data.length;
-                        alert(number_of_post);
+                        //alert(number_of_post);
                     
                                         //var pimage = "my image";
                                         //alert(ptitle +","+ pdate +","+ pccount+","+ pcategories +","+ pimage);
@@ -73,7 +78,19 @@ function checkdata(){
                                             var pcontent = data[i][3];
                                             //alert(ptitle);
                                            // var pcategories = data[i][4].primary_category;
-                                            transaction.executeSql("INSERT INTO product_aqi(product_id,product_name,category_id,category_name,primary_category) VALUES ('"+ptitle+"','"+pdate+"','"+pccount+"','"+pcontent+"',null)",[]);
+                                            transaction.executeSql("INSERT INTO product_aqi('product_id','product_name','category_id','category_name','primary_category') VALUES ('"+ptitle+"','"+pdate+"','"+pccount+"','"+pcontent+"',null)",[],function(tx, results){
+                                           // alert('Returned ID: ' + results.insertId);
+                                           var lastInsertId = results.insertId;
+                                           alert(lastInsertId);
+            },
+            errorCB);
+//            transaction.executeSql("INSERT INTO product_aqi(product_id,product_name,category_id,category_name,primary_category) values('"+ptitle+"','"+pdate+"','"+pccount+"','"+pcontent+"',null))",[], 
+//    function(tx, results){
+//        var lastInsertId = results.insertId;
+//        alert(lastInsertId);// this is the id of the insert just performed
+//    }, 
+//    errorCB
+
 //                                                jQuery(i).each(function(index,customer){
 //                                                    var tr_html = '<tr onclick="myFunction(this)">';
 //
@@ -91,7 +108,7 @@ function checkdata(){
 //
 //                                            });
                                         }
-                                        alert("data completely inserted");
+                                       // alert("data completely inserted");
 //                                      transaction.executeSql(function(tx){
 //                                            
 //                                            db.transaction(function(tx){
