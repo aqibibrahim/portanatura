@@ -24,7 +24,7 @@ and open the template in the editor.
         alert("Create database");
     }
     function errorCB(err){
-            alert("Error processing sql"+err.code);
+            alert("Error processing sql "+err.message);
     }
     function successCB(){
             alert("YEAH!!!!");	
@@ -102,10 +102,10 @@ function checkdata(){
 
 
   function queryDB(tx) {
-     tx.executeSql('SELECT count(*) as count FROM product_aqi', [], querySuccess, errorCB);
+     tx.executeSql("SELECT count(*) as count FROM product_aqi", [], querySuccess, errorCB);
  }
 function errorCB(err){
-                alert("Error processing sql"+err.code);
+                alert("Error processing sql "+err.message);
             }
  function querySuccess(tx, results) {
      var len = results.rows.length;
