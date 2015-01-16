@@ -6,12 +6,13 @@
 
 
 function complete_info(){
-    $.getScript("getresult.js",function (){
-       alert("loading "); 
-    });
+    
     var db = window.openDatabase("portanatura", "1.0", "product", false);
     db.transaction(function(tx){
-            tx.executeSql('SELECT product_id,product_name FROM product_aqi WHERE category_name='+arr+'',[],querrysuccessCB,errorCB);
+        $.getScript("getresult.js",function (){
+       alert("loading "); 
+    });
+            tx.executeSql('SELECT DISTINCT category_name FROM product_aqi',[],querrysuccessCB,errorCB);
         });
         function querrysuccessCB(tx,results){
                   var total=results.row.length;
