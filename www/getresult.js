@@ -80,29 +80,33 @@ function extractFromDB() {
           $('#MyFriendsList').children('li').on('click', function (tx) {
               var arr=$(this).attr('data-name');
               alert('Selected Name=' + arr);
-              tx.executeSql('SELECT product_id,product_name FROM product_aqi WHERE category_name='+arr+'',[],querrysuccessCB,errorCB);
+              $.getScript("complete.js",function (){
+                  alert("loaded another script");
               });
-              function querrysuccessCB(tx,results){
-                  var total=results.row.length;
-                  alert(total);
-                  
-              }
-//            $('#MyFriendsList').empty();
-//        $.each(result.rows,function(index){
-//            var row = result.rows.item(index);
-//            //alert(row);
-//            $('#MyFriendsList').append('<li onclick="myFunction(this)">'+row['category_name']+'</li>');});
-//  
-//        $('#MyFriendsList').listview();
-    }
-//            var len = results.rows.length;
-//       // console.log("DEMO table: " + len + " rows found.");
-//        alert(len);
-//                                
+//              tx.executeSql('SELECT product_id,product_name FROM product_aqi WHERE category_name='+arr+'',[],querrysuccessCB,errorCB);
+//              });
+//              function querrysuccessCB(tx,results){
+//                  var total=results.row.length;
+//                  alert(total);
+//                  
+//              }
+////            $('#MyFriendsList').empty();
+////        $.each(result.rows,function(index){
+////            var row = result.rows.item(index);
+////            //alert(row);
+////            $('#MyFriendsList').append('<li onclick="myFunction(this)">'+row['category_name']+'</li>');});
+////  
+////        $('#MyFriendsList').listview();
 //    }
-
-    function errorCB(err) {
-        console.log("Error processing SQL: "+err.code);
-        alert("error"+err.message);
+////            var len = results.rows.length;
+////       // console.log("DEMO table: " + len + " rows found.");
+////        alert(len);
+////                                
+////    }
+//
+//    function errorCB(err) {
+//        console.log("Error processing SQL: "+err.code);
+//        alert("error"+err.message);
+    });
     }
     }
