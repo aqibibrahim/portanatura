@@ -25,6 +25,7 @@ and open the template in the editor.
         });
         function querySuccess(tx, result) {
         var len = result.rows.length;
+        alert(len);
            var dataset= result.rows;
            $("#MyFriendsList").empty();
 
@@ -32,7 +33,7 @@ and open the template in the editor.
          {  
              item = dataset.item(i);
            $("#MyFriendsList").append( "<li data-theme='c' data-name='"+item['category_name']+"'><h3>"+item['category_name']+"</h3></li>" );
-
+           $('#MyFriendsList').listview();
           } 
           $('#MyFriendsList').children('li').on('click', function () {
    alert('Selected Name=' + $(this).attr('data-name'));
