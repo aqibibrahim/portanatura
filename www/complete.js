@@ -30,31 +30,7 @@ function complete_info(){
           $('#MyFriendsList').children('li').on('click', function (tx) {
               var arr=$(this).attr('data-name');
               alert('Selected Name=' + arr);
-//              $.getScript("complete.js",function (){
-//                  complete_info();
-//                  alert("loaded another script");
-//              });
-//              tx.executeSql('SELECT product_id,product_name FROM product_aqi WHERE category_name='+arr+'',[],querrysuccessCB,errorCB);
-//              });
-//              function querrysuccessCB(tx,results){
-//                  var total=results.row.length;
-//                  alert(total);
-//                  
-//              }
-////            $('#MyFriendsList').empty();
-////        $.each(result.rows,function(index){
-////            var row = result.rows.item(index);
-////            //alert(row);
-////            $('#MyFriendsList').append('<li onclick="myFunction(this)">'+row['category_name']+'</li>');});
-////  
-////        $('#MyFriendsList').listview();
-//    }
-////            var len = results.rows.length;
-////       // console.log("DEMO table: " + len + " rows found.");
-////        alert(len);
-////                                
-////    }
-//
+
  });
     
    
