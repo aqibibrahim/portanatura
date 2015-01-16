@@ -14,13 +14,41 @@ and open the template in the editor.
 <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
-<script type="text/javascript" src="getresult.js"></script>
+
 <script type="text/javascript" src="phonegap-1.4.1.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript">
+    function extractFromDB() {
+        var db = window.openDatabase("portanatura", "1.0", "product", false);
+        db.transaction(function(tx){
+            tx.executeSql('SELECT DISTINCT category_name FROM product_aqi', [], querySuccess, errorCB);
+        });
+        function querySuccess(tx, result) {
+        
+            $('#MyFriendsList').empty();
+        $.each(result.rows,function(index){
+            var row = result.rows.item(index);
+            alert(row);
+            $('#MyFriendsList').append('<li><h3 class="ui-li-heading">'+row['category_name']+'< /h3></li>');});
+  
+        $('#MyFriendsList').listview();
+    }
+//            var len = results.rows.length;
+//       // console.log("DEMO table: " + len + " rows found.");
+//        alert(len);
+//                                
+//    }
+
+    function errorCB(err) {
+        console.log("Error processing SQL: "+err.code);
+    }
+    }
+</script>
     </head>
-    <body onload="extractFromDB();">
+    <body>
         <div data-role="page">
             <div data-role="header" data-position="fixed" data-theme="b">
+                <div class="ui-block-d"><button id="categories" type="button" data-theme="d" data-icon="arrow-r" data-iconpos="right" onclick="extractFromDB();">Get Result</button></div>
                 <h1>Categories</h1>
   </div>
          <div data-role="content">

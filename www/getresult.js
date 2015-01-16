@@ -16,7 +16,7 @@
         $.each(result.rows,function(index){
             var row = result.rows.item(index);
             alert(row);
-            $('#MyFriendsList').append('<li><a href=" #"><h3 class="ui-li-heading">'+row['category_name']+'< /h3></a></li>');});
+            $('#MyFriendsList').append('<li><h3 class="ui-li-heading">'+row['category_name']+'< /h3></li>');});
   
         $('#MyFriendsList').listview();
     }
