@@ -29,7 +29,8 @@ and open the template in the editor.
            $("#MyFriendsList").empty();
 
           for (var i = 0; i < len; i++)
-         {  item = dataset.item(i);
+         {  
+             item = dataset.item(i);
            $("#MyFriendsList").append( "<li data-theme='c' data-name='"+item['category_name']+"'><h3>"+item['category_name']+"</h3></li>" );
 
           } 
