@@ -9,7 +9,7 @@ function complete_info(){
     
     var db = window.openDatabase("portanatura", "1.0", "product", false);
         db.transaction(function(tx){
-            tx.executeSql('SELECT DISTINCT category_id FROM product_aqi', [], querySuccess, errorCB);
+            tx.executeSql('SELECT product_id,product_name FROM product_aqi WHERE category_name= "Novità"', [], querySuccess, errorCB);
         });
         function querySuccess(tx, result) {
         var len = result.rows.length;
@@ -20,7 +20,7 @@ function complete_info(){
           for (var i = 0; i < len; i++)
          {  
              item = dataset.item(i);
-           $("#MyFriendsList").append( "<li data-theme='c' data-name='"+item['category_id']+"'><h3>"+item['category_id']+"</h3></li>" );
+           $("#MyFriendsList").append( "<li data-theme='c' data-name='"+item['category_id']+"'><h3>"+item['product_name']+"</h3><h3>"+item['product_id']+"</h3></li>" );
            $('#MyFriendsList').listview();
           } 
           $('#MyFriendsList').children('li').on('click', function (tx) {
