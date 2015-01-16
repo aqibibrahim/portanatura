@@ -29,7 +29,7 @@ and open the template in the editor.
         $.each(result.rows,function(index){
             var row = result.rows.item(index);
             //alert(row);
-            $('#MyFriendsList').append('<li onclick="myFunction(this)"><h3 class="ui-li-heading">'+row['category_name']+'</h3></li>');});
+            $('#MyFriendsList').append('<li onclick="myFunction(this)">'+row['category_name']+'</li>');});
   
         $('#MyFriendsList').listview();
     }
@@ -44,13 +44,16 @@ and open the template in the editor.
         alert("error"+err.message);
     }
     }
+</script>
+<script type="text/javascript">
     function myFunction() {
 //            $('#data tr').each(function() {
 //    var customerId = $(this).find('td').html(); 
 //    alert(customerId);
 // });
-$("MyFriendsList li ").click(function(){
-
+var db = window.openDatabase("portanatura", "1.0", "product", false);
+$("#MyFriendsList li ").click(function(){
+    
       var oID = $(this).attr("id");
       alert(oID);
 });
