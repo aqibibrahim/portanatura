@@ -5,34 +5,19 @@
  */
 
 
-     function getresult(){
-         jQuery(document).ready(function(){
-             
-             var db;
-    db=window.openDatabase("portanatura","1.0","product",2*1024*1024);
-    db.transaction(querydb,errorCB,successCB); 
-    function querydb(tx){
-               // tx.executeSql('DROP TABLE IF EXISTS product');
-        var sql="SELECT * FROM product";      
-        var cursor = tx.executeSql(sql);
-        
-//        //alert(sql);
-                
-                
-            }
-            function errorCB(err){
-                alert("Error processing sql"+err.code);
-            }
-            function successCB(tx,result){
-                
-                //var sql="SELECT COUNT(*) FROM product";      
-                //tx.executeSql(sql);
-                 var len=result.rows.length;
-                alert(len);
-                console.log("Create  database" + len);
-               // alert("YEAH!!!!");
-                
-                //insertDB();
-            }
-         });
-     }
+    function extractFromDB() {
+        var db = window.openDatabase("portanatura", "1.0", "product", false);
+        db.transaction(function(tx){
+            tx.executeSql('SELECT DISTINCT category_name FROM product_aqi', [], querySuccess, errorCB);
+        });
+        function querySuccess(tx, results) {
+        var len = results.rows.length;
+       // console.log("DEMO table: " + len + " rows found.");
+        alert(len);
+                                
+    }
+
+    function errorCB(err) {
+        console.log("Error processing SQL: "+err.code);
+    }
+    }

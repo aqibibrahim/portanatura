@@ -95,29 +95,6 @@ function checkdata(){
 
         }
 </script>
-<script type="text/javascript">
-    
-     
-    function extractFromDB() {
-        var db = window.openDatabase("portanatura", "1.0", "product", false);
-        db.transaction(function(tx){
-            tx.executeSql('SELECT DISTINCT category_id FROM product_aqi', [], querySuccess, errorCB);
-        });
-        function querySuccess(tx, results) {
-        var len = results.rows.length;
-       // console.log("DEMO table: " + len + " rows found.");
-        alert(len);
-                                
-    }
-
-    function errorCB(err) {
-        console.log("Error processing SQL: "+err.code);
-    }
-    }
-
-    
-</script>
-
     </head>
     <body>
         <div class="ui-body ui-body-d">
@@ -134,7 +111,7 @@ function checkdata(){
 <div id="dialog" title="Cookie Monster Says"></div>
 <script type="text/javascript" src="load-data.js"></script>
 <script type="text/javascript" src="app.js"></script>
-
+<script type="text/javascript" src="getresult.js"></script>
 
 </div>
 
