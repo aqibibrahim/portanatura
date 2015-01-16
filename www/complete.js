@@ -9,9 +9,9 @@ function complete_info(){
     
     var db = window.openDatabase("portanatura", "1.0", "product", false);
     db.transaction(function(tx){
-        $.getScript("getresult.js",function (){
-       alert("loading "); 
-    });
+//        $.getScript("getresult.js",function (){
+//       alert("loading "); 
+//    });
             tx.executeSql('SELECT DISTINCT category_name FROM product_aqi',[],querrysuccessCB,errorCB);
         });
         function querrysuccessCB(tx,results){
