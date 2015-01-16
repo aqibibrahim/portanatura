@@ -105,9 +105,12 @@ function extractFromDB() {
 ////                                
 ////    }
 //
-//    function errorCB(err) {
-//        console.log("Error processing SQL: "+err.code);
-//        alert("error"+err.message);
-    });
+ });
+    
+   
+    }
+    function errorCB(err) {
+        console.log("Error processing SQL: "+err.code);
+        alert("error"+err.message);
     }
     }

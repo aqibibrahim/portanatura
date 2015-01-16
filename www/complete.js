@@ -8,19 +8,55 @@
 function complete_info(){
     
     var db = window.openDatabase("portanatura", "1.0", "product", false);
-    db.transaction(function(tx){
-//        $.getScript("getresult.js",function (){
-//       alert("loading "); 
-//    });
-            tx.executeSql('SELECT DISTINCT category_name FROM product_aqi',[],querrysuccessCB,errorCB);
+        db.transaction(function(tx){
+            tx.executeSql('SELECT DISTINCT category_name FROM product_aqi', [], querySuccess, errorCB);
         });
-        function querrysuccessCB(tx,results){
-                  var total=results.row.length;
-                  alert(total);
-                  
-              }
-              function errorCB(err) {
+        function querySuccess(tx, result) {
+        var len = result.rows.length;
+        alert(len);
+           var dataset= result.rows;
+           $("#MyFriendsLis").empty();
+
+          for (var i = 0; i < len; i++)
+         {  
+             item = dataset.item(i);
+           $("#MyFriendsLis").append( "<li data-theme='c' data-name='"+item['category_name']+"'><h3>"+item['category_name']+"</h3></li>" );
+           $('#MyFriendsLis').listview();
+          } 
+          $('#MyFriendsLis').children('li').on('click', function (tx) {
+              var arr=$(this).attr('data-name');
+              alert('Selected Name=' + arr);
+              $.getScript("complete.js",function (){
+                  complete_info();
+                  alert("loaded another script");
+              });
+//              tx.executeSql('SELECT product_id,product_name FROM product_aqi WHERE category_name='+arr+'',[],querrysuccessCB,errorCB);
+//              });
+//              function querrysuccessCB(tx,results){
+//                  var total=results.row.length;
+//                  alert(total);
+//                  
+//              }
+////            $('#MyFriendsList').empty();
+////        $.each(result.rows,function(index){
+////            var row = result.rows.item(index);
+////            //alert(row);
+////            $('#MyFriendsList').append('<li onclick="myFunction(this)">'+row['category_name']+'</li>');});
+////  
+////        $('#MyFriendsList').listview();
+//    }
+////            var len = results.rows.length;
+////       // console.log("DEMO table: " + len + " rows found.");
+////        alert(len);
+////                                
+////    }
+//
+ });
+    
+   
+    }
+    function errorCB(err) {
         console.log("Error processing SQL: "+err.code);
         alert("error"+err.message);
     }
-}
+    }
