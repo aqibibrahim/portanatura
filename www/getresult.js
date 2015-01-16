@@ -23,6 +23,7 @@ function extractFromDB() {
              item = dataset.item(i);
            $("#MyFriendsList").append( "<li data-theme='c' data-name='"+item['category_name']+"'><h3>"+item['category_name']+"</h3></li>" );
            $('#MyFriendsList').listview();
+             $("#MyFriendsList").listview("refresh");
           } 
           $('#MyFriendsList').children('li').on('click', function (tx) {
               arr=$(this).attr('data-name');
