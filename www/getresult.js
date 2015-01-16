@@ -16,7 +16,7 @@
         $.each(result.rows,function(index){
             var row = result.rows.item(index);
             alert(row);
-            $('#MyFriendsList').append('<li><h3 class="ui-li-heading">'+row['category_name']+'< /h3></li>');});
+            $('#MyFriendsList').append('<li onclick="myFunction(this)"><h3 class="ui-li-heading">'+row['category_name']+' < /h3></li>');});
   
         $('#MyFriendsList').listview();
     }
@@ -30,3 +30,28 @@
         console.log("Error processing SQL: "+err.code);
     }
     }
+    function myFunction() {
+//            $('#data tr').each(function() {
+//    var customerId = $(this).find('td').html(); 
+//    alert(customerId);
+// });
+
+            $("#data tr").click(function(){
+                
+        var $tds = $(this).find('td'),
+            productId = $tds.eq(0).text(),
+            product = $tds.eq(1).text(),
+            category_id = $tds.eq(2).text();
+            category_name=$tds.eq(3).text();
+            primary_category=$tds.eq(4).text();
+            alert('Row :\nId: ' + productId
+              + '\nProduct: ' + product
+              + '\nCategory Id: ' + category_id
+              + '\nCategory Name: ' + category_name
+              + '\nPrimary Category: ' + primary_category);
+      
+		});
+        // do 
+    
+
+        }
