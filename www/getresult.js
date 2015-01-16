@@ -78,7 +78,8 @@ function extractFromDB() {
            $('#MyFriendsList').listview();
           } 
           $('#MyFriendsList').children('li').on('click', function () {
-   alert('Selected Name=' + $(this).attr('data-name'));
+              var arr=$(this).attr('data-name');
+   alert('Selected Name=' + arr);
 });
 //            $('#MyFriendsList').empty();
 //        $.each(result.rows,function(index){
