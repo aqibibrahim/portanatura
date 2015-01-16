@@ -1219,3 +1219,11 @@ outline-style: auto;
 }#categories {
 
 }
+#MyFriendsList {
+    
+    margin: 2px;
+}
+ul li {
+     min-height: 60px;
+    padding-left: 100px;
+}
