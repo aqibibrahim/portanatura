@@ -15,21 +15,21 @@ function complete_info(){
         var len = result.rows.length;
         alert(len);
            var dataset= result.rows;
-           $("#MyFriendsLis").empty();
+           $("#MyFriendsList").empty();
 
           for (var i = 0; i < len; i++)
          {  
              item = dataset.item(i);
-           $("#MyFriendsLis").append( "<li data-theme='c' data-name='"+item['category_id']+"'><h3>"+item['category_id']+"</h3></li>" );
-           $('#MyFriendsLis').listview();
+           $("#MyFriendsList").append( "<li data-theme='c' data-name='"+item['category_id']+"'><h3>"+item['category_id']+"</h3></li>" );
+           $('#MyFriendsList').listview();
           } 
-          $('#MyFriendsLis').children('li').on('click', function (tx) {
+          $('#MyFriendsList').children('li').on('click', function (tx) {
               var arr=$(this).attr('data-name');
               alert('Selected Name=' + arr);
-              $.getScript("complete.js",function (){
-                  complete_info();
-                  alert("loaded another script");
-              });
+//              $.getScript("complete.js",function (){
+//                  complete_info();
+//                  alert("loaded another script");
+//              });
 //              tx.executeSql('SELECT product_id,product_name FROM product_aqi WHERE category_name='+arr+'',[],querrysuccessCB,errorCB);
 //              });
 //              function querrysuccessCB(tx,results){
