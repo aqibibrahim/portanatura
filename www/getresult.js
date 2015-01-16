@@ -36,19 +36,17 @@
 //    alert(customerId);
 // });
 
-            $("#data tr").click(function(){
+            $("#MyFriendsList li").click(function(){
                 
-        var $tds = $(this).find('td'),
-            productId = $tds.eq(0).text(),
-            product = $tds.eq(1).text(),
-            category_id = $tds.eq(2).text();
+        var $tds = $(this).find('li'),
+//            productId = $tds.eq(0).text(),
+//            product = $tds.eq(1).text(),
+//            category_id = $tds.eq(2).text();
             category_name=$tds.eq(3).text();
-            primary_category=$tds.eq(4).text();
-            alert('Row :\nId: ' + productId
-              + '\nProduct: ' + product
-              + '\nCategory Id: ' + category_id
-              + '\nCategory Name: ' + category_name
-              + '\nPrimary Category: ' + primary_category);
+            //primary_category=$tds.eq(4).text();
+            alert(
+              'Category Name: ' + category_name
+              );
       
 		});
         // do 
