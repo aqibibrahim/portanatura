@@ -77,10 +77,16 @@ function extractFromDB() {
            $("#MyFriendsList").append( "<li data-theme='c' data-name='"+item['category_name']+"'><h3>"+item['category_name']+"</h3></li>" );
            $('#MyFriendsList').listview();
           } 
-          $('#MyFriendsList').children('li').on('click', function () {
+          $('#MyFriendsList').children('li').on('click', function (tx) {
               var arr=$(this).attr('data-name');
-   alert('Selected Name=' + arr);
-});
+              alert('Selected Name=' + arr);
+              tx.executeSql('SELECT product_id,product_name FROM product_aqi WHERE category_name='+arr+'',[],querrysuccessCB,errorCB);
+              });
+              function querrysuccessCB(tx,results){
+                  var total=results.row.length;
+                  alert(total);
+                  
+              }
 //            $('#MyFriendsList').empty();
 //        $.each(result.rows,function(index){
 //            var row = result.rows.item(index);
