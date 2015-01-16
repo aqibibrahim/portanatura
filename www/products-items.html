@@ -28,8 +28,8 @@ and open the template in the editor.
             $('#MyFriendsList').empty();
         $.each(result.rows,function(index){
             var row = result.rows.item(index);
-            alert(row);
-            $('#MyFriendsList').append('<li><h3 class="ui-li-heading">'+row['category_name']+'< /h3></li>');});
+            //alert(row);
+            $('#MyFriendsList').append('<li><h3 class="ui-li-heading">'+row['category_name']+'</h3></li>');});
   
         $('#MyFriendsList').listview();
     }
