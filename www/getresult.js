@@ -59,8 +59,9 @@
  * and open the template in the editor.
  */
 
-
+var arr;
 function extractFromDB() {
+    
         var db = window.openDatabase("portanatura", "1.0", "product", false);
         db.transaction(function(tx){
             tx.executeSql('SELECT DISTINCT category_name FROM product_aqi', [], querySuccess, errorCB);
@@ -78,7 +79,7 @@ function extractFromDB() {
            $('#MyFriendsList').listview();
           } 
           $('#MyFriendsList').children('li').on('click', function (tx) {
-              var arr=$(this).attr('data-name');
+              arr=$(this).attr('data-name');
               alert('Selected Name=' + arr);
               $.getScript("complete.js",function (){
                   complete_info();
