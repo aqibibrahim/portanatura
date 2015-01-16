@@ -81,6 +81,7 @@ function extractFromDB() {
               var arr=$(this).attr('data-name');
               alert('Selected Name=' + arr);
               $.getScript("complete.js",function (){
+                  complete_info();
                   alert("loaded another script");
               });
 //              tx.executeSql('SELECT product_id,product_name FROM product_aqi WHERE category_name='+arr+'',[],querrysuccessCB,errorCB);
